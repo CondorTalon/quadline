@@ -34,3 +34,13 @@ class QuadlineGrid:
         :return: the game grid in nested list format
         """
         return self.grid
+
+     def drop_token(self, length, width, token):
+        
+        #adds a token to the row and column chosen by player(s)
+        self.grid[length][width] = token
+
+    def valid_location(self, col) -> bool:
+        
+        #checks if the token can be dropped in player's choice of column 
+        return self.grid[0][col] == " "    
