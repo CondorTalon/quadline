@@ -1,10 +1,11 @@
 from typing import Dict, List
 
 """
-class Controller executes the game Quadline between two players.
+Class Controller executes the game Quadline between two players.
+
 Attributes:
-game: the game Quadline that player will play on
-color: the token color of the player
+player1 and player2: the two players playing the game
+game: the game of Quadline that player will play on
 """
 class GameController:
     player1: Player
@@ -21,10 +22,20 @@ class GameController:
         
     def play() -> str:
         """
-        Returns the winner of the game once the game is fininshed and makes the
-        player play each other
+        Begin the game which the two players play, with both players take turn making moves,
+        and return the winner once the game is finished.
         """
-        raise NotImplementedError
+        while not game.is_game_over:
+            if game.current_player == player1:
+                player1.get_move()
+            if game.current_player == player2:
+                player2.get_move()
+        winner = game.get_winner()
+        if winner == player1 or winner == player2:
+            return winner.__str__ + " won the Game!"
+        else:
+            return "The match ended in a draw."
+                
     
     if __name__ == "__main__":
         play()

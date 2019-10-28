@@ -1,7 +1,8 @@
 from typing import Dict, List
 
 """
-class Player represents a single player of the game.
+Class Player represents a single player in a Quadline game.
+
 Attributes:
 game: the game Quadline that player will play on
 color: the token color of the player

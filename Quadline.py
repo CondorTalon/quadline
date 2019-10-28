@@ -1,8 +1,14 @@
-"""
-The main game class Quadline that has all the relevant methods
-"""
 
 class Quadline:
+    """
+    The Quadline Class represents an instance of a Quadline game and has methods that is used to
+    operate the game.
+
+    Attributes:
+    grid: the quadline grid the game will use
+    player1 and player2: the two players playing the game
+    current_player: the player that can make the next move
+    """
     grid: QuadlineGrid
     player1: Player
     player2: Player
@@ -45,3 +51,4 @@ class Quadline:
                 self.current_player = 'P1'
                 return true
         else return false
+

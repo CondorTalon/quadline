@@ -3,8 +3,13 @@ from typing import List
 
 class QuadlineGrid:
     """
-    Constructs the Quadline grid and updates the grid as needed when players
-    play their moves.
+    Class QuadlineGrid represents the grid which a game of Quadline is played on and has methods
+    that updates the state grid as players make moves.
+
+    Attributes:
+    row and col: col stands for 'column'. Each space in the grid can be located through
+        a row and a col coordinate.
+    grid: the nested list representation of the actual grid
     """
     row: int
     col: int
@@ -36,11 +41,13 @@ class QuadlineGrid:
         return self.grid
 
      def drop_token(self, length, width, token):
-        
-        #adds a token to the row and column chosen by player(s)
+        """
+        adds a token to the row and column chosen by player(s)
+        """
         self.grid[length][width] = token
 
     def valid_location(self, col) -> bool:
-        
-        #checks if the token can be dropped in player's choice of column 
+        """
+        checks if the token can be dropped in player's choice of column
+        """
         return self.grid[0][col] == " "    
