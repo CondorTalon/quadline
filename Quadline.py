@@ -1,3 +1,4 @@
+from quadline import QuadlineGrid, Player
 
 class Quadline:
     """
@@ -13,16 +14,16 @@ class Quadline:
     player1: Player
     player2: Player
     current_player: str
-    
-    def __init__(grid: QuadlineGrid):
+
+    def __init__(self):
         """
         Instantiates the class Quadline
         """
-        self.grid = grid
+        self.grid = Quadline
         self.player1 = player1
         self.player2 = player2
         self.current_player = 'P1'
-        
+
     def get_current_player() -> str:
         return self.current_player
 
@@ -50,5 +51,6 @@ class Quadline:
                 grid.drop_token(self, column, player2.color)
                 self.current_player = 'P1'
                 return true
-        else return false
+        else
+            return false
 

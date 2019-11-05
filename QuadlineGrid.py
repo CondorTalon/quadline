@@ -40,7 +40,7 @@ class QuadlineGrid:
         """
         return self.grid
 
-     def drop_token(self, length, width, token):
+    def drop_token(self, length, width, token):
         """
         adds a token to the row and column chosen by player(s)
         """
@@ -50,4 +50,4 @@ class QuadlineGrid:
         """
         checks if the token can be dropped in player's choice of column
         """
-        return self.grid[0][col] == " "    
+        return self.grid[0][col] == " "
