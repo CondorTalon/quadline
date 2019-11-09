@@ -15,7 +15,7 @@ class QuadlineGUI:
         RADIUS = 20
         # token and margin size for visuals
 
-        while running:
+        while running:  # Operates the GUI while the window is open
             running_title = True
             while running_title:  # Operates the titlescreen
                 title_font = pygame.font.SysFont("Arial", 100)

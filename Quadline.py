@@ -19,38 +19,38 @@ class Quadline:
         """
         Instantiates the class Quadline
         """
-        self.grid = Quadline
-        self.player1 = player1
-        self.player2 = player2
+        self.grid = QuadlineGrid.QuadlineGrid()
+        self.player1 = Player.Player(self.grid, "Yellow")
+        self.player2 = Player.Player("Red")
         self.current_player = 'P1'
 
-    def get_current_player() -> str:
+    def get_current_player(self) -> str:
         return self.current_player
 
-    def is_game_over() -> bool:
+    def is_game_over(self) -> bool:
         """
         Returns whether or not the game is over.
         """
-        if (not player1.has_move) or (not player2.has_move):
-            return true
-        else return false
+        if (not self.player1.has_move) or (not self.player2.has_move):
+            return True
+        else:
+            return False
 
-    def make_move(column) -> bool:
+    def make_move(self, column: int) -> bool:
         """
         Makes a move for the current player. If the move is invalid, the player is prompted to try again.
         If the move is valid, places a token in the specified column and passes the turn to the other player.
         Returns whether the move was successfully made.
         """
-        valid_move = grid.valid_location(self, col)
-        if valid_move and not is_game_over:
+        valid_move = self.grid.valid_location(column)
+        if valid_move and not self.is_game_over():
             if self.current_player == 'P1':
-                grid.drop_token(self, column, player1.color)
+                self.grid.drop_token(column, self.player1.color)
                 self.current_player = 'P2'
-                return true
-            else
-                grid.drop_token(self, column, player2.color)
+            else:
+                self.grid.drop_token(column, self.player2.color)
                 self.current_player = 'P1'
-                return true
-        else
-            return false
+            return True
+        else:
+            return False
 
