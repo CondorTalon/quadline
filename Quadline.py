@@ -2,54 +2,95 @@ from quadline import QuadlineGrid, Player
 
 class Quadline:
     """
-    The Quadline Class represents an instance of a Quadline game and has methods that is used to
-    operate the game.
+    Class Quadline represents an instance of a Quadline game and has methods that is used
+    to operate the game and update te grid it is played on.
 
     Attributes:
-    grid: the quadline grid the game will use
-    player1 and player2: the two players playing the game
-    current_player: the player that can make the next move
+    :QuadlineGrid grid: the Quadline grid this game will use
+    :Player player1, player2: the two players playing the game
+    :Player current_player: the player that can make the next move
     """
     grid: QuadlineGrid
     player1: Player
     player2: Player
-    current_player: str
+    current_player: Player
 
     def __init__(self):
         """
-        Instantiates the class Quadline
+        The constructor of the class, instantiates a new game
         """
         self.grid = QuadlineGrid.QuadlineGrid()
-        self.player1 = Player.Player(self.grid, "Yellow")
-        self.player2 = Player.Player("Red")
-        self.current_player = 'P1'
+        self.player1 = Player.Player(self, "Yellow")
+        self.player2 = Player.Player(self, "Red")
+        self.current_player = self.player1
 
-    def get_current_player(self) -> str:
+    def get_current_player(self) -> Player:
+        """
+        Returns the player that can make a move at the time this function is called
+
+        Parameters:
+        :return:
+        """
         return self.current_player
 
     def is_game_over(self) -> bool:
         """
         Returns whether or not the game is over.
+
+        Parameters:
+        :return:
         """
-        if (not self.player1.has_move) or (not self.player2.has_move):
-            return True
+        if self.check_quadline() == None:
+            if (not self.player1.has_move) or (not self.player2.has_move):
+                return True
+            else:
+                return False
         else:
-            return False
+            return True
+
+    def check_quadline(self) -> Optional[Player]:
+        """
+        Checks if a Quadline has been formed on the grid. If a Quadline is formed,
+        checks which player formed it.
+
+        Parameters:
+        :return: The player who successfully formed a Quadline, or None if no Quadline is
+        found on the grid.
+        """
+        someone_might_win = self.grid.check_quadline()
+        if someone_might_win == None:
+            return None
+        elif someone_might_win == self.get_player_token(self.player1):
+            return self.player1
+        else:
+            return self.player2
+
+    def get_player_token(self, player: Player) -> str:
+        """
+        Return the token used by the specified player.
+
+        Parameters:
+        :return:
+        """
+        return player.get_color()
+        
 
     def make_move(self, column: int) -> bool:
         """
-        Makes a move for the current player. If the move is invalid, the player is prompted to try again.
-        If the move is valid, places a token in the specified column and passes the turn to the other player.
-        Returns whether the move was successfully made.
+        Makes a move for the current player at the specified column.
+
+        Parameters:
+        :int column: the column the move wil be made in
+        :return: True if the move is successfully made. False otherwise.
         """
-        valid_move = self.grid.valid_location(column)
+        valid_move = self.grid.valid_column(column)
         if valid_move and not self.is_game_over():
-            if self.current_player == 'P1':
+            if self.current_player == self.player1:
                 self.grid.drop_token(column, self.player1.color)
-                self.current_player = 'P2'
+                self.current_player = self.player2
             else:
                 self.grid.drop_token(column, self.player2.color)
-                self.current_player = 'P1'
+                self.current_player = self.player1
             return True
         else:
             return False
