@@ -1,5 +1,6 @@
 from quadline import QuadlineGrid, Player
 
+
 class Quadline:
     """
     Class Quadline represents an instance of a Quadline game and has methods that is used
@@ -20,8 +21,8 @@ class Quadline:
         The constructor of the class, instantiates a new game
         """
         self.grid = QuadlineGrid.QuadlineGrid()
-        self.player1 = Player.Player(self, "Yellow")
-        self.player2 = Player.Player(self, "Red")
+        self.player1 = Player.Player(self, "Y")
+        self.player2 = Player.Player(self, "R")
         self.current_player = self.player1
 
     def get_current_player(self) -> Player:
@@ -33,6 +34,11 @@ class Quadline:
         """
         return self.current_player
 
+    def get_other_player(self, player: Player) -> Player:
+        if player == self.player1:
+            return self.player2
+        return self.player1
+
     def is_game_over(self) -> bool:
         """
         Returns whether or not the game is over.
@@ -40,40 +46,13 @@ class Quadline:
         Parameters:
         :return:
         """
-        if self.check_quadline() == None:
-            if (not self.player1.has_move) or (not self.player2.has_move):
-                return True
-            else:
-                return False
-        else:
+        if self.current_player is None or not self.grid.available_moves():
             return True
+        return False
 
-    def check_quadline(self) -> Optional[Player]:
-        """
-        Checks if a Quadline has been formed on the grid. If a Quadline is formed,
-        checks which player formed it.
-
-        Parameters:
-        :return: The player who successfully formed a Quadline, or None if no Quadline is
-        found on the grid.
-        """
-        someone_might_win = self.grid.check_quadline()
-        if someone_might_win == None:
-            return None
-        elif someone_might_win == self.get_player_token(self.player1):
-            return self.player1
-        else:
-            return self.player2
-
-    def get_player_token(self, player: Player) -> str:
-        """
-        Return the token used by the specified player.
-
-        Parameters:
-        :return:
-        """
-        return player.get_color()
-        
+    def get_winner(self, column):
+        if self.is_game_over():
+            return self.grid.get_token(self.grid.depth(column), column)
 
     def make_move(self, column: int) -> bool:
         """
@@ -83,15 +62,11 @@ class Quadline:
         :int column: the column the move wil be made in
         :return: True if the move is successfully made. False otherwise.
         """
-        valid_move = self.grid.valid_column(column)
-        if valid_move and not self.is_game_over():
-            if self.current_player == self.player1:
-                self.grid.drop_token(column, self.player1.color)
-                self.current_player = self.player2
-            else:
-                self.grid.drop_token(column, self.player2.color)
-                self.current_player = self.player1
+        if self.grid.drop_token(column, self.get_current_player().get_color()):
+            self.current_player = self.get_other_player(self.current_player)
+            if self.grid.is_quadline(column):
+                # print("QUADLINE")
+                self.current_player = None
             return True
-        else:
-            return False
+        return False
 

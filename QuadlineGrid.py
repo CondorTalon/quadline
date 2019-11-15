@@ -4,8 +4,8 @@ from typing import List
 class QuadlineGrid:
     """
     Class QuadlineGrid represents a grid which a game of Quadline is played on
-    and has methods that updates the state of the grid as players in a game interacts
-    with it using methods in class Quadline.
+    and has methods that updates the state of the grid as players in a game
+    interacts with it using methods in class Quadline.
 
     Attributes:
     :int row: a integer representing a row in a Quadline Grid.
@@ -17,13 +17,12 @@ class QuadlineGrid:
     col: int
     grid: List[List[str]]
 
-    def __init__(self, row: int, column: int) -> None:
+    def __init__(self) -> None:
         """
-        The constructor of the class, instantiates a newgrid
+        The constructor of the class, instantiates a new grid
         """
         self.row = 6
         self.col = 7
-        #TODO: Flexible implementation of row and col
         self.grid = []
 
         for y in range(self.row):
@@ -43,57 +42,14 @@ class QuadlineGrid:
         Parameters:
         :return: the game grid in nested list format
         """
-        return self.grid
-
-    def drop_token(self, col: int, token: str) -> None:
-        """
-        Adds player token to first unoccupied row, starting from the bottom of the grid,
-        in the specified column.
-        
-        Parameters:
-        :int col: The column the token will drop into.
-        :str token: The string representation of a token.
-        :return: None
-        """
-        if self.valid_column(col):
-            y = 0
-            while self.has_token(y, col):
-                y += 1
-            self.grid[y][col] = token
-
-    def has_token(self, row: int, col: int) -> bool:
-        """
-        Check a specified row and column on grid to see if there exist a token in that
-        location.
-        
-        Parameters:
-        :int row: The row of the location being checked
-        :int col: The column of the location being checked
-        :return: True if there is a token on the location. False otherwise.
-        """
-        if check_counds(row, col):
-            return (not self.grid[row][col] == " ")
-        else:
-            return False
-
-    def valid_column(self, col: int) -> bool:
-        """
-        Checks if there is space in the column specified that new tokens can occupy.
-
-        Parameters:
-        :int col: The column being checked
-        :return: True if there is space for a token. False otherwise.
-        """
-        for r in range(self.row):
-            if not self.has_token(r, col):
-                return True
-        return False
+        for i in range(6):
+            print(self.grid[i])
 
     def check_bounds(self, row: int, col: int) -> bool:
         """
         Check a specified row and column on grid to see if that is in the grid.
         location.
-        
+
         Parameters:
         :int row: The row of the location being checked
         :int col: The column of the location being checked
@@ -101,28 +57,100 @@ class QuadlineGrid:
         """
         return 0 <= row < self.row and 0 <= col < self.col
 
-    def check_quadline(self) -> Optional[str]:
+    def valid_column(self, col: int) -> bool:
         """
-        Checks if a Quadline has been formed on the grid. If a Quadline is formed,
-        returns the token it is made out of.
+        Checks if there is space in the column specified that new tokens can
+        occupy.
 
         Parameters:
-        :return: The tokens that successfully formed a Quadline, or None if no Quadline is
-        found on the grid.
+        :int col: The column being checked
+        :return: True if there is space for a token. False otherwise.
         """
-        for r in range(self.row):
-            for c in range(self.column):
-                if has_token(r, c):
-                    token = self.[r][c]
-                    for drow in range(-1, 2):
-                        for dcol in range(-1, 2):
-                            count = 1
-                            while check_bounds(r + count * drow, c + count * dcol):
-                                if self.grid[r + count * drow][c + count * dcol] == token:
-                                    count += 1
-                                else:
-                                    break
-                            if token >= 3:
-                                return token
-        return None
-                    
+
+        return self.check_bounds(0, col) and self.grid[0][col] == " "
+
+    def depth(self, col) -> int:
+        row = 0
+        while self.get_token(row, col) == " ":
+            row += 1
+        return row
+
+    def drop_token(self, col: int, token: str) -> bool:
+        """
+        Adds player token to first unoccupied row, starting from the bottom of
+        the grid, in the specified column and returns the result of the move.
+
+        Parameters:
+        :int col: The column the token will drop into.
+        :str token: The string representation of a token.
+        :return: True if dropped token results in win, False otherwise
+        """
+        col = int(col)
+        if self.valid_column(col):
+            self.grid[self.depth(col)-1][col] = token
+            return True
+        return False
+
+    def get_token(self, row: int, col: int) -> str:
+        """
+        Check a specified row and column on grid to see if there exist a token
+        in that location.
+
+        Parameters:
+        :int row: The row of the location being checked
+        :int col: The column of the location being checked
+        :return: True if there is a token on the location. False otherwise.
+        """
+        if self.check_bounds(row, col):
+            return self.grid[row][col]
+
+    def check_quadline(self, row: int, col: int, drow: int, dcol: int) -> bool:
+        """
+        Given the location and direction, checks to see if that specified
+        direction results in a Quadline.
+
+        :param row: int (0 to 6)
+        :param col: int (0 to 7)
+        :param drow: int (-1 to 1)
+        :param dcol: int (-1 to 1)
+        :return: True if specified location and direction results in win, False
+        otherwise
+        """
+        count = 1
+        token = self.get_token(row, col)
+        count_token = 1
+        while self.check_bounds(row+drow, col+dcol) and count <= 3:
+            if self.grid[row+drow][col+dcol] == token:
+                row += drow
+                col += dcol
+                count_token += 1
+            if count_token == 4:
+                return True
+            count += 1
+        return False
+
+    def is_quadline(self, col) -> bool:
+        """
+        Checks if a Quadline has been formed on the grid.
+
+        Parameters:
+        :return: True if the tokens that successfully formed a Quadline, False
+        otherwise.
+        """
+        row = self.depth(col)
+        for i in range(-1, 2):
+            for j in range(-1, 2):
+                if not (i == 0 and j == 0) and self.check_quadline(row, col, i, j):
+                    return True
+        return False
+
+    def available_moves(self) -> bool:
+        """
+        Checks if the grid still has moves
+        :return: True if grid has moves, False otherwise
+        """
+        has_move = False
+        for i in range(self.col):
+            if self.valid_column(i):
+                has_move = True
+        return has_move

@@ -27,6 +27,16 @@ class Player:
         """
         return self.color
 
+    def get_move(self):
+        bad_input = True
+        input_column = None
+
+        while bad_input:
+            input_column = input("Enter column 0 - 6")
+            if input_column.__len__() == 1 and str(input_column) in "0123456":
+                bad_input = False
+        return int(input_column)
+
     def has_move(self) -> bool:
         """
         Returns whether the player has a move on the grid
