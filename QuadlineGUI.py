@@ -2,6 +2,14 @@ import pygame
 
 
 class QuadlineGUI:
+    """
+    Class QuadlineGUI represents the display window where a game of Quadline will be played. 
+    The class contains methods that operate the title screen, game screen, and other tasks such as 
+    operating the Quadline game and highlighting moves made by each player
+
+    DOCUMENTATION IS CURRENTLY UNFINISHED (MUHAMMAD) 
+
+    """
 
     def __init__(self):
         pygame.init()

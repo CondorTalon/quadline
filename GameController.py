@@ -25,6 +25,8 @@ class GameController:
         """
         Begin the game which the two players play, with both players take turn making moves,
         and return the winner once the game is finished.
+
+        :return: The player who won the game being played. 
         """
         move = None
         self.game.grid.get_grid()
