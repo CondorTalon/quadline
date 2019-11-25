@@ -129,7 +129,7 @@ class QuadlineGrid:
             count += 1
         return False
 
-    def is_quadline(self, col) -> bool:
+    def is_quadline(self, col: int) -> bool:
         """
         Checks if a Quadline has been formed on the grid.
 
