@@ -1,4 +1,4 @@
-from quadline import QuadlineGrid, Player
+from quadline import QuadlineGrid, Player, Observable
 
 
 class Quadline:
@@ -62,7 +62,9 @@ class Quadline:
         :int column: the column the move wil be made in
         :return: True if the move is successfully made. False otherwise.
         """
-        if self.grid.drop_token(column, self.get_current_player().get_color()):
+        if self.current_player is not None and \
+                self.grid.drop_token(column,
+                                     self.get_current_player().get_color()):
             self.current_player = self.get_other_player(self.current_player)
             if self.grid.is_quadline(column):
                 # print("QUADLINE")
