@@ -23,11 +23,23 @@ class Player:
 
     def get_color(self) -> str:
         """
-        Returns the color of the player
+        Returns the color of token assigned to the player
+
+        Parameters:
+        :returns:
+        Colour of the token as a string
         """
         return self.color
 
     def get_move(self):
+
+        """
+        Gets the input for the column from the user, ensures that the value is in the parameters, and
+        returns the value 
+
+        Parameters:
+        :return: The integer value inputted by the user
+        """
         bad_input = True
         input_column = None
 
@@ -39,7 +51,10 @@ class Player:
 
     def has_move(self) -> bool:
         """
-        Returns whether the player has a move on the grid
+        Returns whether the player has made a move on the grid
+        
+        Parameters: 
+        :return: _____
         """
         raise NotImplementedError
 
