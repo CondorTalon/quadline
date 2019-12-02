@@ -26,6 +26,7 @@ class QuadlineGUI:
 
         # Operates the GUI while the window is open
         running_title = True
+        running_manual = False
         while running:
 
             # Operates the title screen
@@ -68,6 +69,81 @@ class QuadlineGUI:
                         pos = pygame.mouse.get_pos()
                         if play_button.collidepoint(pos):
                             running_title = False
+                        elif manual_button.collidepoint(pos):
+                            running_title = False
+                            running_manual = True
+
+                pygame.display.update()
+
+            # Sets up the manual screen layout
+            # running_manual = True
+            pygame.Surface.fill(display, (0, 0, 0))
+
+            # Operates the manual screen
+            while running_manual:
+                manual_font = pygame.font.SysFont("Arial", 70)
+                manual_title_text = manual_font.render("How to Play", True,
+                                                       (255, 255, 255))
+                display.blit(manual_title_text, (115, 25))
+
+                # Sets up menu button
+                menu_button = pygame.draw.rect(display, (255, 255, 255),
+                                               [265, 350, 75, 25])
+                menu_font = pygame.font.SysFont("Arial", 12)
+                menu_text = menu_font.render("Main Menu", True, (0, 0, 0))
+                display.blit(menu_text, (273, 355))
+                if menu_button.collidepoint(pygame.mouse.get_pos()):
+                    menu_button = pygame.draw.rect(display, (255, 255, 51),
+                                                   [265, 350, 75, 25])
+                    display.blit(menu_text, (273, 355))
+
+                # Display rules of the game
+                rule_font = pygame.font.SysFont("Arial", 18)
+                rule_text1 = rule_font.render("Number of players: 2 Players. "
+                                              "Yellow and Red.", True,
+                                              (255, 255, 255))
+                rule_text2 = rule_font.render("Goal of the game: Create a "
+                                              "4-in-a-row in any direction ",
+                                              True, (255, 255, 255))
+                rule_text3 = rule_font.render("before your opponent to win.",
+                                              True, (255, 255, 255))
+                rule_text4 = rule_font.render("Who moves first: Yellow moves "
+                                              "first.", True, (255, 255, 255))
+                rule_text5 = rule_font.render("Making your move: When it is "
+                                              "your turn, click on one of ",
+                                              True, (255, 255, 255))
+                rule_text6 = rule_font.render("the move buttons to drop your "
+                                              "token to the last empty ", True,
+                                              (255, 255, 255))
+                rule_text7 = rule_font.render("space in the specified column. "
+                                              "Once you have made a move, ",
+                                              True, (255, 255, 255))
+                rule_text8 = rule_font.render("it becomes the opponents turn. "
+                                              "Take turns dropping tokens ",
+                                              True, (255, 255, 255))
+                rule_text9 = rule_font.render("until someone wins.", True,
+                                              (255, 255, 255))
+                display.blit(rule_text1, (80, 120))
+                display.blit(rule_text2, (80, 145))
+                display.blit(rule_text3, (80, 170))
+                display.blit(rule_text4, (80, 195))
+                display.blit(rule_text5, (80, 220))
+                display.blit(rule_text6, (80, 245))
+                display.blit(rule_text7, (80, 270))
+                display.blit(rule_text8, (80, 295))
+                display.blit(rule_text9, (80, 320))
+
+                # Run events in the manual screen
+                for event in pygame.event.get():
+                    if event.type == pygame.QUIT:
+                        pygame.quit()
+                        quit()
+                        running = False
+                        running_title = False
+                    elif event.type == pygame.MOUSEBUTTONDOWN:
+                        pos = pygame.mouse.get_pos()
+                        if menu_button.collidepoint(pos):
+                            QuadlineGUI()
 
                 pygame.display.update()
 
