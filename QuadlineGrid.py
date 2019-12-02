@@ -35,7 +35,7 @@ class QuadlineGrid:
             # constructs the actual game grid by appending the individual rows
             # to the main list
 
-    def get_grid(self) -> List[List[str]]:
+    def get_grid(self) -> None:
         """
         Returns the Quadline grid
 

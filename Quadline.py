@@ -15,6 +15,7 @@ class Quadline:
     player1: Player
     player2: Player
     current_player: Player
+    last_move: int
 
     def __init__(self):
         """
@@ -24,6 +25,7 @@ class Quadline:
         self.player1 = Player.Player(self, "Y")
         self.player2 = Player.Player(self, "R")
         self.current_player = self.player1
+        self.last_move = None
 
     def get_current_player(self) -> Player:
         """
@@ -50,9 +52,13 @@ class Quadline:
             return True
         return False
 
-    def get_winner(self, column):
-        if self.is_game_over():
+    def get_winner(self):
+        column = self.get_last_move()
+        if self.is_game_over() and self.current_player is None:
             return self.grid.get_token(self.grid.depth(column), column)
+
+    def get_last_move(self):
+        return self.last_move
 
     def make_move(self, column: int) -> bool:
         """
@@ -67,8 +73,8 @@ class Quadline:
                                      self.get_current_player().get_color()):
             self.current_player = self.get_other_player(self.current_player)
             if self.grid.is_quadline(column):
-                # print("QUADLINE")
                 self.current_player = None
+            self.last_move = column
             return True
         return False
 
