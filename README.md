@@ -69,18 +69,39 @@ After cloning or extracting the game files from the zip, you'll find various `.p
 
 ## <a name="devs"></a>Developers of Quadline
 
-The game Quadline was created by Team While, a group of students from University of Toronto Mississauga
+The game Quadline was created by Team While, a group of students from University of Toronto Mississauga. Quadline was created in the course CSC290: Communication Skills for Computer Scientists. The members of the team are :
+
+- Ethan Chung
+- Jagdev Singh Jhajj
+- Muhammad Naqvi
+- Richard Seo
+- Nai-An Yu
+
+[Return to top](#top)
 
 ## <a name="contrib"></a>Contributions  
   
 #### Ethan:  
 My code contributions to the project includes: creating the GUI of the game, creating the grid class with methods to update the grid model, and adding additional methods into the game and player classes. Once the grid, game, and player classes have been created, I connected the classes together and ensured that the backend of the game successfully runs. After making sure the backend runs properly, I linked the game model with the GUI and created buttons and handlers for the GUI to update the model as needed. I did some testing afterward to make sure the frontend portrays the model correctly. Part of the documentation for the grid and game class typed up by me. For the README, I contributed by writing up the ‘How to Install and Run Quadline’ section.
 
+### Muhammad: 
 
-## THIS IS A WORK IN PROGRESS - MUHAMMAD ## 
+For this project, I worked on creating the grid class and worked along with other members to implement methods that will update the grid model. I contributed to the commenting in our code to make sure other developers who come across the game are able to comprehend our code. For the README, I contributed by creating the general outline for the README file, worked on "License Information", "Developers of Quadline", and "Navigation" section. I also worked on the navigation system that allows for quick access to each section of the README file and allows the reader to quickly get back to the 'Navigation' section by clicking the "Return to top" buttons at the end of each section. 
+
+
+
+
+
+
+
+
+
+
+
 
 
 [Return to top](#top)
+
 
 
 ## <a name="license"></a>License Information
