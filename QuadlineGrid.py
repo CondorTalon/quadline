@@ -10,7 +10,8 @@ class QuadlineGrid:
     Attributes:
     :int row: a integer representing a row in a Quadline Grid.
     :int col: a integer representing a column in a Quadline Grid.
-        Each space in the grid can be located through a row and a col coordinate.
+        Each space in the grid can be located through a row and a col
+        coordinate.
     :List[List] grid: the nested list representation of a Quadline grid
     """
     row: int
@@ -27,23 +28,17 @@ class QuadlineGrid:
 
         for y in range(self.row):
             temp_row = []
-            # creates a temporary row until there are six rows
             for x in range(self.col):
                 temp_row.append(" ")
-                # creates the columns for each row
             self.grid.append(temp_row)
-            # constructs the actual game grid by appending the individual rows
-            # to the main list
 
-    def get_grid(self) -> None:
+    def grid_string(self) -> None:
         """
-        Returns the Quadline grid
-
-        Parameters:
-        :return: the game grid in nested list format
+        Prints the Quadline grid
         """
         for i in range(6):
             print(self.grid[i])
+        print("-----------------------------------")
 
     def check_bounds(self, row: int, col: int) -> bool:
         """
@@ -51,8 +46,8 @@ class QuadlineGrid:
         location.
 
         Parameters:
-        :int row: The row of the location being checked
-        :int col: The column of the location being checked
+        :param row: The row of the location being checked
+        :param col: The column of the location being checked
         :return: True if the location specified is in the grid. False otherwise.
         """
         return 0 <= row < self.row and 0 <= col < self.col
@@ -63,13 +58,21 @@ class QuadlineGrid:
         occupy.
 
         Parameters:
-        :int col: The column being checked
+        :param col: The column being checked
         :return: True if there is space for a token. False otherwise.
         """
 
         return self.check_bounds(0, col) and self.grid[0][col] == " "
 
     def depth(self, col) -> int:
+        """
+        Returns the lowest unoccupied space in the specified column
+
+        Parameters:
+        :param col: int (0 to 7)
+        :return: an int representing the lowest unoccupied space in specified
+        col
+        """
         row = 0
         while self.get_token(row, col) == " ":
             row += 1
@@ -81,8 +84,8 @@ class QuadlineGrid:
         the grid, in the specified column and returns the result of the move.
 
         Parameters:
-        :int col: The column the token will drop into.
-        :str token: The string representation of a token.
+        :param col: The column the token will drop into.
+        :param token: The string representation of a token.
         :return: True if dropped token results in win, False otherwise
         """
         col = int(col)
@@ -97,8 +100,8 @@ class QuadlineGrid:
         in that location.
 
         Parameters:
-        :int row: The row of the location being checked
-        :int col: The column of the location being checked
+        :param row: The row of the location being checked
+        :param col: The column of the location being checked
         :return: True if there is a token on the location. False otherwise.
         """
         if self.check_bounds(row, col):
@@ -109,6 +112,7 @@ class QuadlineGrid:
         Given the location and direction, checks to see if that specified
         direction results in a Quadline.
 
+        Parameters:
         :param row: int (0 to 6)
         :param col: int (0 to 7)
         :param drow: int (-1 to 1)
@@ -140,13 +144,16 @@ class QuadlineGrid:
         row = self.depth(col)
         for i in range(-1, 2):
             for j in range(-1, 2):
-                if not (i == 0 and j == 0) and self.check_quadline(row, col, i, j):
+                if not (i == 0 and j == 0) and self.check_quadline(row, col,
+                                                                   i, j):
                     return True
         return False
 
     def available_moves(self) -> bool:
         """
         Checks if the grid still has moves
+
+        Parameters:
         :return: True if grid has moves, False otherwise
         """
         has_move = False

@@ -4,12 +4,12 @@ from quadline import Quadline
 
 class QuadlineGUI:
     """
-    Class QuadlineGUI represents the display window where a game of Quadline will be played.
-    The class contains methods that operate the title screen, game screen, and other tasks such as
-    operating the Quadline game and highlighting moves made by each player
-
-    DOCUMENTATION IS CURRENTLY UNFINISHED (MUHAMMAD)
-
+    Class QuadlineGUI represents the display window where a game of Quadline
+    will be played. The class contains the initializer that launches the game.
+    The display will be operated through the initializer. The title screen, game
+    screen, manual screen and other tasks such as operating the Quadline game
+    and highlighting moves made by each player will be operated through a
+    while-loop for each screen
     """
 
     def __init__(self):
@@ -262,6 +262,7 @@ class QuadlineGUI:
                             for i in range(len(move_buttons)):
                                 if move_buttons[i].collidepoint(pos):
                                     quadline.make_move(i)
+                                    quadline.grid.grid_string()
 
                 pygame.display.update()
 
