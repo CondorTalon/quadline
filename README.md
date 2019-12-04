@@ -6,12 +6,11 @@ A Connect 4 inspired game, created using `python` and its `pygame` library.
 <a name="top"></a> 
 1.  [Description](#intro) 
     - [Screenshots of the Game](#screen)
-2. [Game Controls and Features](#feature)
-3. [How to Install and Run Quadline](#install)
-4. [Documentation for Quadline](#documen)
-5. [Developers](#devs)
-6. [Contributions](#contrib)
-7. [License](#license)
+2. [How to Install and Run Quadline](#install)
+3. [Documentation for Quadline](#documen)
+4. [Developers](#devs)
+5. [Contributions](#contrib)
+6. [License](#license)
 
 ## <a name="intro"></a>Game Description 
 
@@ -33,17 +32,6 @@ If the board fills up without either player creating a line of four, the game is
 ![Game Over Screen](https://i.imgur.com/sUsiEaw.png)
 
 [Return to top](#top)
-
-
-## <a name="feature"></a>Game Controls and Features
-
-FOR GAME FEATURES 
-
-[Return to top](#top)
-
-
-
-
 
 
 ## <a name="documen"></a>Documentation and Directory Structure
