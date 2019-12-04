@@ -65,7 +65,7 @@ The game Quadline was created by Team While, a group of students from University
 - Jagdev Singh Jhajj
 - Muhammad Naqvi
 - Richard Seo
-- Nai-An Yu
+- Nai-An Yu (Andy)
 
 [Return to top](#top)
 
@@ -88,7 +88,7 @@ I created the main methods used in the main Quadline method, namely "get_current
 
 ### Andy:
 
-I improved on some other methods throughout the QuadlineGrid and Quadline class, and created a few new methods, notably "check_quadline". I also created a uniform docstring format for my team to use in the methods of our code to make our code easily understandable. For the README file, ---TO BE CONTINUED---
+I improved on some other methods throughout the QuadlineGrid and Quadline class, and created a few new methods, notably "check_quadline". I also created a uniform docstring format for my team to use in the methods of our code to make our code easily understandable. For the README file, I contributed in the Documentation by adding the "Extending the game" section. I also made edits to fix minor typos and mistakes on both the code and the documentation.
 
 [Return to top](#top)
 
