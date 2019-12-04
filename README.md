@@ -86,7 +86,7 @@ The game Quadline was created by Team While, a group of students from University
 ### Ethan:  
 My code contributions to the project includes: creating the GUI of the game, creating the grid class with methods to update the grid model, and adding additional methods into the game and player classes. Once the grid, game, and player classes have been created, I connected the classes together and ensured that the backend of the game successfully runs. After making sure the backend runs properly, I linked the game model with the GUI and created buttons and handlers for the GUI to update the model as needed. I did some testing afterward to make sure the frontend portrays the model correctly. Part of the documentation for the grid and game class typed up by me. For the README, I contributed by writing up the ‘How to Install and Run Quadline’ section.
 
-###Jagdev:
+### Jagdev:
 
 For this project, I mainly contributed by creating the abstract classes for the major classes and providing a concrete structure for our code. I documented the classes and abstract methods I had created. My fellow team members then structured the code based on the class structure that I had provided. I wrote the manual for our game that explains the game's gameplay and it's features. For the README, I wrote the Documentation and explained the Directory Structure of our game in the Wiki Page of our repository. The complete Wiki Page was scripted by me. 
 
