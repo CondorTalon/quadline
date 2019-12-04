@@ -15,11 +15,11 @@ A Connect 4 inspired game, created using `python` and its `pygame` library.
 
 ## <a name="intro"></a>Game Description 
 
+The object of Quadline is to connect four of your pieces in a straight line, in any direction. Play is done on a 7 by 6 grid. Players take turns dropping a piece from the top of a column of their choice; the piece will then fall to the lowest unoccupied space in that column.
 
+The line of four may be finished at either end, or from the middle. Players must play their pieces strategically, both offensively and defensively, to build their line of four and block their opponent from doing the same.
 
-
-
-
+If the board fills up without either player creating a line of four, the game is counted as a draw.
 
 [Return to top](#top)
 
@@ -28,7 +28,9 @@ A Connect 4 inspired game, created using `python` and its `pygame` library.
 
 ## <a name="screen"></a>Screenshots
 
-## UPLOAD SCREENSHOTS OF GUI TO IMGUR OR SOMETHING ##
+![Title Screen](https://i.imgur.com/3wLthBM.png)
+![Gameplay Screen](https://i.imgur.com/fBXdEfr.png)
+![Game Over Screen](https://i.imgur.com/sUsiEaw.png)
 
 [Return to top](#top)
 
@@ -88,15 +90,9 @@ My code contributions to the project includes: creating the GUI of the game, cre
 
 For this project, I worked on creating the grid class and worked along with other members to implement methods that will update the grid model. I contributed to the commenting in our code to make sure other developers who come across the game are able to comprehend our code. For the README, I contributed by creating the general outline for the README file, worked on "License Information", "Developers of Quadline", and "Navigation" section. I also worked on the navigation system that allows for quick access to each section of the README file and allows the reader to quickly get back to the 'Navigation' section by clicking the "Return to top" buttons at the end of each section. 
 
+### Richard:
 
-
-
-
-
-
-
-
-
+I created the main methods used in the main Quadline method, namely "get_current_player", "is_game_over" and "make_move". For the README, I provided the screenshots by hosting them on an image-hosting site (imgur), and wrote the Game Description section. I also provided my account on Github to host the repo.
 
 
 
