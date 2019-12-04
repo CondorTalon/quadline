@@ -94,7 +94,9 @@ For this project, I worked on creating the grid class and worked along with othe
 
 I created the main methods used in the main Quadline method, namely "get_current_player", "is_game_over" and "make_move". For the README, I provided the screenshots by hosting them on an image-hosting site (imgur), and wrote the Game Description section. I also provided my account on Github to host the repo.
 
+### Andy:
 
+I improved on some other methods throughout the QuadlineGrid and Quadline class, and created a few new methods, notably "check_quadline". I also created a uniform docstring format for my team to use in the methods of our code to make our code easily understandable. For the README file, ---TO BE CONTINUED---
 
 [Return to top](#top)
 
